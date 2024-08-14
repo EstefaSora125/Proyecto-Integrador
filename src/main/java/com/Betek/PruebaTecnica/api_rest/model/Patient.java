@@ -16,10 +16,7 @@ import lombok.Setter;
 @Table(name = "patient")
 public class Patient {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_patient")
-    private int id;
+   @Id
     @Column(name = "identity_patient")
     private String identityPatient;
     @Column(name = "type_id")

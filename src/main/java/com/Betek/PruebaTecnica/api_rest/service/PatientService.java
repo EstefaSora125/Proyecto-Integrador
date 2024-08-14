@@ -5,6 +5,7 @@ import com.Betek.PruebaTecnica.api_rest.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +20,11 @@ public class PatientService {
         this.patientRepository.save(patient);
     }
 
-    public Patient get(int id){
+    public Patient get(String id){
         Optional<Patient> patientOptional = this.patientRepository.findById(id);
         return patientOptional.orElseGet(Patient::new);
+    }
+    public List<Patient> getAll(){
+        return patientRepository.findAll();
     }
 }

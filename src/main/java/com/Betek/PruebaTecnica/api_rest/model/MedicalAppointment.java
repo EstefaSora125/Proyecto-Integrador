@@ -1,27 +1,42 @@
 package com.Betek.PruebaTecnica.api_rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name="medical_appointment")
 public class MedicalAppointment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
     @Column(name="speciality")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String specialty;
     @Column(name="date")
     private LocalDate date;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idM_fk_idP", referencedColumnName = "id_patient")
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "identity_patient", referencedColumnName = "identity_patient")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private  Patient patient;
+
+    public MedicalAppointment() {
+    }
+
+
+    public MedicalAppointment(int id, LocalDate date) {
+        this.id = id;
+        this.date = date;
+    }
 }

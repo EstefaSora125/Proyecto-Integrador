@@ -25,18 +25,12 @@ public class PatientController {
     }
 
     @GetMapping("/{id_patient}")
-    public Patient get(@PathVariable("id_patient") int id){
+    public Patient get(@PathVariable("id_patient") String id){
         return this.patientService.get(id);
     }
 
-    /*
-
-
     @GetMapping
     public List<Patient> getAll(){
-
+        return this.patientService.getAll();
     }
-
-     */
-
 }
