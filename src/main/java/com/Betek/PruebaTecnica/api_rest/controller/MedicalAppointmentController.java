@@ -35,7 +35,7 @@ public class MedicalAppointmentController {
                         .id(appointment.getId()).build());
             }
             return ResponseEntity.badRequest().body(ResponseDto.builder()
-                    .mensaje("El paciente no se encuentra registrado en el hospital")
+                    .mensaje("La información registrada del paciente no es correcta")
                     .build());
         }catch (PatientAlreadyAppointment e){
             return ResponseEntity.badRequest().body(ResponseDto.builder()

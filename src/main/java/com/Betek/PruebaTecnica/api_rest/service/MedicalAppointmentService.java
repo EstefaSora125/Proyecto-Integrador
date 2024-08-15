@@ -30,16 +30,17 @@ public class MedicalAppointmentService {
         if (validatePatient(appointment.getPatient().getIdentityPatient())){
             Optional<Patient> existingPatient = patientRepository.findById(appointment.getPatient().getIdentityPatient());
             if (existingPatient.isPresent()) {
-                appointment.setDate(this.getDateMedicalAppointment(existingPatient.get().getTypePatient()));
-                appointment.setPatient(existingPatient.get());
-                appointmentRepository.save(appointment);
-                return true;
-            }else {
-                return false;
+                if(validateFields(appointment)){
+                    appointment.setDate(this.getDateMedicalAppointment(existingPatient.get().getTypePatient()));
+                    appointment.setPatient(existingPatient.get());
+                    appointmentRepository.save(appointment);
+                    return true;
+                }
             }
+            return false;
         }else {
             throw new PatientAlreadyAppointment("El usuario con identificación " +
-                   appointment.getPatient().getIdentityPatient() +
+                    appointment.getPatient().getIdentityPatient() +
                     " ya tiene una cita agendada, por lo cual no podrá realizar más agendamientos." );
         }
     }
@@ -95,5 +96,10 @@ public class MedicalAppointmentService {
             }
         }
         return date;
+    }
+
+    private boolean validateFields(MedicalAppointment medicalAppointment) {
+        return medicalAppointment.getPatient().getIdentityPatient().length() <= 10 &&
+                medicalAppointment.getSpecialty().length() <= 100;
     }
 }

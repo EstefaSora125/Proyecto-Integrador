@@ -30,9 +30,10 @@ public class MedicalAppointment {
     public MedicalAppointment() {
     }
 
-
-    public MedicalAppointment(int id, LocalDate date) {
+    public MedicalAppointment(int id, String specialty, LocalDate date, Patient patient) {
         this.id = id;
+        this.specialty = specialty;
         this.date = date;
+        this.patient = patient;
     }
 }
