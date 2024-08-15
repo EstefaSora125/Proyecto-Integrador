@@ -159,9 +159,7 @@ Debido a que un usuario particular solo puede tener una cita en el hospital, si 
 }
 ```
 
-## Used By
-
-This project is used by the following companies:
+## Herramientas implementadas
 
 - Lenguaje de programación: Java
 - Frameworks: Spring Boot
