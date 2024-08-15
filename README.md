@@ -28,7 +28,7 @@ En esta sección se presenta el diseño estructural del sistema, que incluye la 
 #### Diagrama de Base de datos
 
 <div align="center">
-      <img src="C:\Users\Estefania Sora\Desktop\Bootcamp\Proyecto-Integrador\ImagesREADME\Diagrama EPS.drawio.png" alt="TicketPDF">
+      <img src="\ImagesREADME\Diagrama EPS.drawio.png" alt="TicketPDF">
 </div>
 
 ### Arquitectura del sistema
