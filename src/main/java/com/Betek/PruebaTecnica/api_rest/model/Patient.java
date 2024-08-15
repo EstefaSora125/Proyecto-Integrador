@@ -1,8 +1,10 @@
 package com.Betek.PruebaTecnica.api_rest.model;
 
 import com.Betek.PruebaTecnica.api_rest.model.enums.TypeId;
-import com.Betek.PruebaTecnica.api_rest.model.enums.TypePatient;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +24,7 @@ public class Patient {
     @Column(name = "type_id")
     private TypeId typeId;
     @Column(name = "type_patient")
-    private TypePatient typePatient;
+    private String typePatient;
     @Column(name = "phone_number")
     private int phoneNumber;
     @Column(name = "name")

@@ -1,5 +1,7 @@
 package com.Betek.PruebaTecnica.api_rest.controller;
 
+import com.Betek.PruebaTecnica.api_rest.controller.dto.ResponseDto;
+import com.Betek.PruebaTecnica.api_rest.exceptions.DifferentTypePatient;
 import com.Betek.PruebaTecnica.api_rest.model.Patient;
 import com.Betek.PruebaTecnica.api_rest.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +14,24 @@ import java.util.List;
 @RequestMapping("/api/v1/patient")
 public class PatientController {
 
-    private PatientService patientService;
+    private final PatientService patientService;
     @Autowired
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
 
     @PostMapping
-    public ResponseEntity<Patient> create(@RequestBody Patient patient){
-        this.patientService.create(patient);
-        return ResponseEntity.ok(patient);
+    public ResponseEntity<ResponseDto> create(@RequestBody Patient patient){
+        try{
+            this.patientService.create(patient);
+            return ResponseEntity.ok(ResponseDto.builder()
+                    .mensaje("El paciente se registró con éxito")
+                    .build());
+        }catch (DifferentTypePatient e){
+            return ResponseEntity.badRequest().body(ResponseDto.builder()
+                    .mensaje(e.getMessage())
+                    .build());
+        }
     }
 
     @GetMapping("/{id_patient}")

@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-public class PatientAlreadyAppoiment extends RuntimeException{
+public class DifferentTypePatient extends RuntimeException{
 
-    public PatientAlreadyAppoiment(String message) {
+    public DifferentTypePatient(String message) {
         super(message);
     }
 }
